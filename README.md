@@ -74,7 +74,7 @@ const image = easyPoster(schema, {
 
 # 三、schema 类型
 
-## 图片
+## 图片 image
 
 ```json
 {
@@ -87,7 +87,7 @@ const image = easyPoster(schema, {
 }
 ```
 
-## 文字
+## 文字 text
 
 ```json
 {
@@ -103,7 +103,7 @@ const image = easyPoster(schema, {
 }
 ```
 
-## 容器
+## 容器 group
 
 ```json
 {
@@ -116,7 +116,7 @@ const image = easyPoster(schema, {
 }
 ```
 
-## 舞台
+## 舞台 stage
 
 stage 的 width和height 是整个画布的宽高，也就是整个导出来的图片的宽高
 
