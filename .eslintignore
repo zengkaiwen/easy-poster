@@ -1,0 +1,11 @@
+# 忽略目录
+dist/
+node_modules/
+
+
+# node 覆盖率文件
+coverage/
+
+# 忽略文件
+.eslintrc.js
+rollup.config.js

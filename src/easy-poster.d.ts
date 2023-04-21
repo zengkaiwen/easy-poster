@@ -1,0 +1,25 @@
+export type PosterNodeType = 'node' | 'stage' | 'group' | 'image' | 'text';
+
+export type PosterNodeStyle =
+  | 'width'
+  | 'height'
+  | 'maxWidth'
+  | 'maxHeight'
+  | 'minWidth'
+  | 'minHeight'
+  | 'margin'
+  | 'padding'
+  | 'position'
+  | 'top'
+  | 'right'
+  | 'bottom'
+  | 'left'
+  | 'flex'
+  | 'flexDirection'
+  | 'flexBasis'
+  | 'flexGrow'
+  | 'flexWrap'
+  | 'flexShrink'
+  | 'justifyContent'
+  | 'alignItems'
+
