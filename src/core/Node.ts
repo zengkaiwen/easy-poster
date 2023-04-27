@@ -1,22 +1,22 @@
 import yoga from 'yoga-layout-prebuilt';
-import type { PosterBaseStyle, TStyleFlexDirection, TStyleWrap, PosterNodeType, TStylePosition, TStyleJustifyContent, TStyleAlignItems, TStyleAlignContent, TStyleAlignSelf, TStyleValue, PosterNodeBound } from '../easy-poster';
+import type { PosterStyle, TStyleFlexDirection, TStyleWrap, PosterNodeType, TStylePosition, TStyleJustifyContent, TStyleAlignItems, TStyleAlignContent, TStyleAlignSelf, TStyleValue, PosterNodeBound } from '../easy-poster';
 
 export default class PosterNode {
   public type: PosterNodeType = 'node';
 
   protected _layout: yoga.YogaNode;
-  protected _style: PosterBaseStyle;
+  protected _style: PosterStyle;
 
-  constructor(style: PosterBaseStyle) {
+  constructor(style: PosterStyle) {
     this._layout = yoga.Node.create();
     this._style = style;
   }
 
   // style
-  get style(): PosterBaseStyle {
+  get style(): PosterStyle {
     return this._style;
   }
-  set style(s: PosterBaseStyle) {
+  set style(s: PosterStyle) {
     this._style = s;
     this._setStyle(s);
   }
@@ -36,11 +36,11 @@ export default class PosterNode {
     throw new Error('the render() has not been implemented.');
   }
 
-  private _setStyle<K extends keyof PosterBaseStyle>(style: PosterBaseStyle) {
+  private _setStyle<K extends keyof PosterStyle>(style: PosterStyle) {
     Object.keys(style).map((key) => this._setStyleItem(key as K))
   }
 
-  private _setStyleItem<K extends keyof PosterBaseStyle>(key:K) {
+  private _setStyleItem<K extends keyof PosterStyle>(key:K) {
     const value = this._style[key];
     if (value === undefined) return;
     switch(key) {

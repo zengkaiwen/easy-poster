@@ -1,4 +1,4 @@
-import { PosterBaseStyle, PosterNodeType } from "../easy-poster";
+import { PosterStyle, PosterNodeType } from "../easy-poster";
 import PosterNode from "./Node";
 
 export default class PosterGroup extends PosterNode {
@@ -6,7 +6,7 @@ export default class PosterGroup extends PosterNode {
   public type: PosterNodeType = 'group';
   private _availableNodeType: PosterNodeType[] = ['image', 'text', 'group'];
 
-  constructor(style: PosterBaseStyle, children: PosterNode[] = []) {
+  constructor(style: PosterStyle, children: PosterNode[] = []) {
     super(style);
 
     this.addChildren(children);

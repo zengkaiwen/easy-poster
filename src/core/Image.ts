@@ -1,4 +1,4 @@
-import { PosterBaseStyle, PosterNodeType } from "../easy-poster";
+import { PosterStyle, PosterNodeType } from "../easy-poster";
 import renderer from "../renderer";
 import PosterNode from "./Node";
 
@@ -6,7 +6,7 @@ export default class PosterImage extends PosterNode {
   public type: PosterNodeType = 'image';
   private _image: CanvasImageSource;
 
-  constructor(style: PosterBaseStyle, image: CanvasImageSource) {
+  constructor(style: PosterStyle, image: CanvasImageSource) {
     super(style);
 
     if (!image) {
@@ -16,9 +16,17 @@ export default class PosterImage extends PosterNode {
     this._image = image;
   }
 
+  get image(): CanvasImageSource {
+    return this._image
+  }
+
   render(): boolean {
-    const { left, top, width, height } = this.bound;
-    renderer.drawImage(this._image, left, top, width, height);
-    return true;
+    try {
+      renderer.drawImage(this);
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
   }
 }

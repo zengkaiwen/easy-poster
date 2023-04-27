@@ -23,7 +23,9 @@ export type TStyleAlignContent = 'baseline' | 'center' | 'flex-start' | 'flex-en
 
 export type TStyleAlignSelf = 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch';
 
-export interface PosterBaseStyle {
+export type TStyleTextAlign = 'left' | 'center' | 'right';
+
+export interface PosterStyle {
   width?: TStyleValue;
   height?: TStyleValue;
   maxWidth?: TStyleValue;
@@ -47,6 +49,37 @@ export interface PosterBaseStyle {
   alignItems?: TStyleAlignItems;
   alignContent?: TStyleAlignContent;
   alignSelf?: TStyleAlignSelf;
+  fontFamily?: string;
+  fontStyle?: string;
+  fontWeight?: string | number;
+  fontSize?: string | number;
+  lineHeight?: string | number;
+  textAlign?: TStyleTextAlign;
+  color?: string;
 }
 
 export type PosterType = 'png' | 'jpeg' | 'jpg';
+
+export interface PosterImageSchema {
+  type: 'image';
+  style: PosterStyle;
+  src: string;
+}
+
+export interface PosterTextSchema {
+  type: 'text';
+  style: PosterStyle;
+  text: string;
+}
+
+export interface PosterGroupSchema {
+  type: 'group';
+  style: PosterStyle;
+  children: Array<PosterImageSchema | PosterTextSchema | PosterGroupSchema>;
+}
+
+export interface PosterStageSchema {
+  type: 'stage';
+  style: PosterStyle;
+  children: Array<PosterImageSchema | PosterTextSchema | PosterGroupSchema>;
+}

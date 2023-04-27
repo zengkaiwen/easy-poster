@@ -1,4 +1,4 @@
-import { PosterBaseStyle, PosterNodeType, PosterType } from "../easy-poster";
+import { PosterStyle, PosterNodeType, PosterType } from "../easy-poster";
 import PosterGroup from "./Group";
 import PosterNode from "./Node";
 import renderer from "../renderer";
@@ -9,11 +9,11 @@ export default class PosterStage extends PosterGroup {
   width: number | string;
   height: number | string;
 
-  constructor(style: PosterBaseStyle, chidren: PosterNode[], width: number, height: number) {
+  constructor(style: PosterStyle, chidren: PosterNode[]) {
     super(style, chidren);
 
-    this.width = width || style.width || 0;
-    this.height = height || style.height || 0;
+    this.width = style.width || 0;
+    this.height = style.height || 0;
     this._setRenderWH();
     this._setStagetyle();
   }

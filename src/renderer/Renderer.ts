@@ -1,3 +1,5 @@
+import PosterImage from "../core/Image";
+import PosterText from "../core/Text";
 import { PosterType } from "../easy-poster";
 
 export default abstract class Renderer {
@@ -5,15 +7,11 @@ export default abstract class Renderer {
   height: number;
 
   abstract drawImage(
-    image: CanvasImageSource,
-    left: number,
-    top: number,
-    width: number,
-    height: number
+    image: PosterImage
   );
 
   abstract drawText(
-    text: string,
+    text: PosterText
   );
 
   abstract exportPoster(
