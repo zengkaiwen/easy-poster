@@ -12,15 +12,17 @@ export default defineConfig({
   input: 'src/index.ts',
   output: [
     {
-      file: `dist/${libName}.cjs.js`,
-      format: 'cjs'
+      file: `lib/${libName}.cjs.js`,
+      format: 'cjs',
+      name: libName,
     },
     {
-      file: `dist/${libName}.es.js`,
+      file: `lib/${libName}.esm.js`,
       format: 'es',
+      name: libName,
     },
     {
-      file: `dist/${libName}.umd.js`,
+      file: `lib/${libName}.umd.js`,
       format: 'umd',
       // 第三方模块，结合 external 使用
       globals: {

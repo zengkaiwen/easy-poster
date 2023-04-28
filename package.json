@@ -2,12 +2,14 @@
   "name": "easy-poster",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/easy-poster.umd.js",
-  "module": "dist/easy-poster.es.js",
+  "main": "lib/easy-poster.cjs.js",
+  "module": "lib/easy-poster.esm.js",
+  "jsnext:main": "lib/easy-poster.esm.js",
+  "browser": "lib/easy-poster.umd.js",
   "types": "src/index.ts",
-  "files": ["dist"],
+  "files": ["lib"],
   "scripts": {
-    "build": "rollup -c rollup.config.js",
+    "build": "tsc && rollup -c rollup.config.js",
     "build:watch": "rollup -c rollup.config.js --watch"
   },
   "keywords": [

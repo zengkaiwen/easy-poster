@@ -1,6 +1,8 @@
 # 忽略目录
-dist/
+example/
 node_modules/
+src-js/
+lib/
 
 
 # node 覆盖率文件

@@ -1,6 +1,15 @@
 {
   "compilerOptions": {
     "rootDir": "./src",
-    "target": "ES2015"
-  }
+    "module": "ESNext",
+    "moduleResolution": "nodenext",
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2015",
+    "lib": ["ES2018", "DOM"],
+    "allowJs": false,
+    "sourceMap": false,
+    "outDir": "./src-js",
+  },
+  "include": ["src/index.ts"],
+  "exclude": ["node_modules", "lib"]
 }
