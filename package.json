@@ -4,9 +4,9 @@
   "description": "",
   "main": "dist/easy-poster.umd.js",
   "module": "dist/easy-poster.es.js",
+  "types": "src/index.ts",
+  "files": ["dist"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack serve --config example/webpack.config.js",
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -c rollup.config.js --watch"
   },

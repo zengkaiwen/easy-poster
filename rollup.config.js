@@ -2,8 +2,8 @@ import { defineConfig } from 'rollup';
 import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import json from 'rollup-plugin-json';
-import { terser } from 'rollup-plugin-terser';
+import json from '@rollup/plugin-json';
+import { babel } from '@rollup/plugin-babel';
 import pkg from './package.json';
 
 const libName = pkg.name;
@@ -38,6 +38,5 @@ export default defineConfig({
     resolve(),
     commonjs(),
     json(),
-    terser(),
   ]
 })
