@@ -7,8 +7,12 @@
   "jsnext:main": "lib/easy-poster.esm.js",
   "browser": "lib/easy-poster.umd.js",
   "types": "src/index.ts",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "scripts": {
+    "dev": "tsc-watch --onSuccess \"nr dev:example\"",
+    "dev:example": "vite",
     "build": "tsc && rollup -c rollup.config.js",
     "build:watch": "rollup -c rollup.config.js --watch"
   },
@@ -22,6 +26,7 @@
     "yoga-layout-prebuilt": "^1.10.0"
   },
   "devDependencies": {
+    "@antfu/ni": "^0.21.3",
     "@babel/core": "^7.16.7",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.16.7",
@@ -31,7 +36,10 @@
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^13.1.2",
     "@rollup/plugin-typescript": "^11.1.0",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@vitejs/plugin-react": "^4.0.0",
     "babel-loader": "^8.2.3",
     "eslint": "^8.0.1",
     "eslint-config-standard-with-typescript": "^34.0.1",
@@ -39,10 +47,12 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rollup": "^2.62.0",
-    "typescript": "*",
-    "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.7.2"
+    "styled-components": "6.0.0-rc.1",
+    "tsc-watch": "^6.0.4",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.5"
   }
 }
