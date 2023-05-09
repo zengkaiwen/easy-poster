@@ -1,0 +1,23 @@
+{
+  // edit
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.suggest.preview": true,
+  "editor.suggestSelection": "first",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // files
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/lib": true,
+    "**/example": true
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+  "path-intellisense.mappings": {
+    "@easy-poster": "${workspaceFolder}/src-js"
+  },
+  "typescript.suggest.paths": false,
+  "javascript.suggest.paths": false
+}

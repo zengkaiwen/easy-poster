@@ -8,8 +8,8 @@
     "lib": ["ES2018", "DOM"],
     "allowJs": false,
     "sourceMap": false,
-    "outDir": "./src-js",
+    "outDir": "./src-js"
   },
   "include": ["src/index.ts"],
-  "exclude": ["node_modules", "lib"]
+  "exclude": ["node_modules", "lib", "example"]
 }

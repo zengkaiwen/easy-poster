@@ -1,38 +1,31 @@
-import PosterImage from "../core/Image";
-import PosterText from "../core/Text";
-import { PosterType } from "../easy-poster";
-import Renderer from "./Renderer";
+import PosterImage from '../core/Image';
+import PosterText from '../core/Text';
+import { PosterType } from '../easy-poster';
+import Renderer from './Renderer';
 
 const mimeType: Record<PosterType, string> = {
   png: 'image/png',
   jpeg: 'image/jpeg',
   jpg: 'image/jpeg',
-}
+};
 
 export default class WebRenderer extends Renderer {
   private _canvas: HTMLCanvasElement;
+
   private _context: CanvasRenderingContext2D | null;
 
   constructor() {
     super();
 
-    const canvas = this._canvas = document.createElement('canvas');
+    const canvas = (this._canvas = document.createElement('canvas'));
     this._context = canvas.getContext('2d');
     canvas.style.display = 'none';
     document.body.appendChild(canvas);
   }
 
-  drawImage(
-    image: PosterImage
-  ) {
+  drawImage(image: PosterImage) {
     const { left, top, width, height } = image.bound;
-    this._context?.drawImage(
-      image.image,
-      left,
-      top,
-      width,
-      height,
-    )
+    this._context?.drawImage(image.image, left, top, width, height);
   }
 
   exportPoster(type: PosterType, quality: number): string {
@@ -43,7 +36,17 @@ export default class WebRenderer extends Renderer {
 
   drawText(text: PosterText) {
     if (!this._context) return;
-    const { maxWidth, width, lineHeight, left, top, fontFamily, fontSize, fontWeight, color } = text.style;
+    const {
+      maxWidth,
+      width,
+      lineHeight,
+      left,
+      top,
+      fontFamily,
+      fontSize,
+      fontWeight,
+      color,
+    } = text.style;
     // 字体
     if (fontFamily) {
       const weight = fontWeight || 500;
@@ -58,26 +61,31 @@ export default class WebRenderer extends Renderer {
     } else {
       this._context.fillStyle = '#000000';
     }
-    // 基于文本对齐的绘制方法
-    const fillText = (line: string, x: number, y: number) => {
-      let lineX: number = x;
-      let textLineWidth: number = this._context?.measureText(line)?.width || 0;
-      if (text.style.textAlign === 'center') {
-        lineX = x + (textWidth - textLineWidth) * 0.5;
-      }
-      if (text.style.textAlign === 'right') {
-        lineX = x + (textWidth - textLineWidth)
-      }
-      this._context?.fillText(line, lineX, y);
-    }
-    // 计算换行
+
     const x = Number(left) || 0;
     let y = Number(top) || 0;
     const textWidth = Number(width) || Number(maxWidth) || this.width;
-    const textLineHeight = Number(lineHeight)
-      || parseInt(window.getComputedStyle(this._canvas).lineHeight)
-      || parseInt(window.getComputedStyle(document.body).lineHeight)
+    const textLineHeight =
+      Number(lineHeight) ||
+      parseInt(window.getComputedStyle(this._canvas).lineHeight) ||
+      parseInt(window.getComputedStyle(document.body).lineHeight);
     const textArr = [...text.text];
+
+    // 基于文本对齐的绘制方法
+    const fillText = (line: string, $x: number, $y: number) => {
+      let lineX: number = $x;
+      const textLineWidth: number =
+        this._context?.measureText(line)?.width || 0;
+      if (text.style.textAlign === 'center') {
+        lineX = $x + (textWidth - textLineWidth) * 0.5;
+      }
+      if (text.style.textAlign === 'right') {
+        lineX = $x + (textWidth - textLineWidth);
+      }
+      this._context?.fillText(line, lineX, $y);
+    };
+
+    // 计算换行
     let line = '';
 
     for (let n = 0; n < textArr.length; n++) {

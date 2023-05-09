@@ -11,3 +11,4 @@ coverage/
 # 忽略文件
 .eslintrc.js
 rollup.config.js
+vite.config.js

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import styled from 'styled-components';
 import easyPoster from '@easy-poster';
 
@@ -41,7 +41,7 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   console.log(easyPoster);
 
@@ -60,7 +60,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </Wrapper>
-  )
+  );
 }
 
-export default App
+export default App;
