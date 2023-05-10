@@ -19,5 +19,6 @@
     "@easy-poster": "${workspaceFolder}/src-js"
   },
   "typescript.suggest.paths": false,
-  "javascript.suggest.paths": false
+  "javascript.suggest.paths": false,
+  "cSpell.words": ["antfu", "easyposter", "jsnext"]
 }

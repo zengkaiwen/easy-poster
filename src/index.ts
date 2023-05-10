@@ -8,7 +8,7 @@ import type {
   PosterImageSchema,
   PosterStageSchema,
   PosterTextSchema,
-} from './easy-poster';
+} from './easyposter';
 
 function loadSchemaImages(
   schema: PosterStageSchema,
@@ -19,11 +19,7 @@ function loadSchemaImages(
 
   // 获取 schema 内的所有图片 src 地址，并创建其与
   function reParserImage(
-    s:
-      | PosterStageSchema
-      | PosterGroupSchema
-      | PosterImageSchema
-      | PosterTextSchema
+    s: PosterStageSchema | PosterGroupSchema | PosterImageSchema | PosterTextSchema
   ) {
     if (s.type === 'image') {
       imageSrcList.push(s.src);
@@ -54,7 +50,7 @@ function loadSchemaImages(
       };
     });
   }
-  imageSrcList.forEach(async (src: string, index) => {
+  imageSrcList.forEach(async (src, index) => {
     const img = await loadImage(src);
     imgEleList.push(img);
     progressCb?.((index + 1) / len);
@@ -73,11 +69,7 @@ function loadParser(
   }
 ): PosterStage {
   function reParser(
-    s:
-      | PosterStageSchema
-      | PosterGroupSchema
-      | PosterImageSchema
-      | PosterTextSchema
+    s: PosterStageSchema | PosterGroupSchema | PosterImageSchema | PosterTextSchema
   ): PosterNode {
     if (s.type === 'image') {
       return new PosterImage(s.style, imgList.shift() as HTMLImageElement);
@@ -93,10 +85,6 @@ function loadParser(
   }
   const stage = reParser(schema);
   return stage as PosterStage;
-}
-
-export function defineSchema(schema: PosterStageSchema) {
-  return schema;
 }
 
 export default function (

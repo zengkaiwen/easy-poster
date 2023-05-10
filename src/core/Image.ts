@@ -1,9 +1,10 @@
-import { PosterStyle, PosterNodeType } from "../easy-poster";
-import renderer from "../renderer";
-import PosterNode from "./Node";
+import type { PosterStyle, PosterNodeType } from '../easyposter';
+import renderer from '../renderer';
+import PosterNode from './Node';
 
 export default class PosterImage extends PosterNode {
   public type: PosterNodeType = 'image';
+
   private _image: CanvasImageSource;
 
   constructor(style: PosterStyle, image: CanvasImageSource) {
@@ -17,7 +18,7 @@ export default class PosterImage extends PosterNode {
   }
 
   get image(): CanvasImageSource {
-    return this._image
+    return this._image;
   }
 
   render(): boolean {

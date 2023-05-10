@@ -1,44 +1,64 @@
+import path from 'path';
+
 import { defineConfig } from 'rollup';
+import babel from '@rollup/plugin-babel';
 import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
-import { babel } from '@rollup/plugin-babel';
+import replace from '@rollup/plugin-replace';
+import terser from '@rollup/plugin-terser';
+import fileSize from 'rollup-plugin-filesize';
+import progress from 'rollup-plugin-progress';
+
 import pkg from './package.json';
 
 const libName = pkg.name;
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 export default defineConfig({
   input: 'src/index.ts',
-  output: [
-    {
-      file: `lib/${libName}.cjs.js`,
-      format: 'cjs',
-      name: libName,
+  output: {
+    file: path.resolve(__dirname, 'lib/'),
+    format: 'umd',
+    name: libName,
+    sourcemap: isDevelopment,
+    indent: false,
+    banner: `
+      /**
+       * @license
+       * EasyPoster v${pkg.version}
+       * Copyright (c) 2019 Kevin.
+       * Licensed under Apache License 2.0 https://www.apache.org/licenses/LICENSE-2.0
+       */
+    `.trim(),
+    globals: {
+      'visual-yoga-layout-prebuilt': 'yoga',
     },
-    {
-      file: `lib/${libName}.esm.js`,
-      format: 'es',
-      name: libName,
-    },
-    {
-      file: `lib/${libName}.umd.js`,
-      format: 'umd',
-      // 第三方模块，结合 external 使用
-      globals: {
-        'yoga-layout-prebuilt': 'yoga',
-      },
-      name: libName,
-    }
-  ],
-  external: ['yoga-layout-prebuilt'],
+  },
+  external: ['visual-yoga-layout-prebuilt'],
   plugins: [
     babel(),
-    typescript({
-      sourceMap: false,
-    }),
+    typescript(),
     resolve(),
     commonjs(),
     json(),
-  ]
-})
+    progress(),
+    replace({
+      preventAssignment: true,
+      values: {
+        __BUILD_ENV__: process.env.NODE_ENV,
+        __BUILD_VERSION_: pkg.version,
+      },
+    }),
+    fileSize(),
+    !isDevelopment &&
+      terser({
+        compress: {
+          pure_getters: true,
+          unsafe: true,
+          unsafe_comps: true,
+        },
+      }),
+  ],
+});

@@ -12,3 +12,5 @@ coverage/
 .eslintrc.js
 rollup.config.js
 vite.config.js
+
+index.js

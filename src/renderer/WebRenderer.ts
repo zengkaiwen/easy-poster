@@ -1,6 +1,6 @@
 import PosterImage from '../core/Image';
 import PosterText from '../core/Text';
-import { PosterType } from '../easy-poster';
+import type { PosterType } from '../easyposter';
 import Renderer from './Renderer';
 
 const mimeType: Record<PosterType, string> = {
@@ -36,17 +36,8 @@ export default class WebRenderer extends Renderer {
 
   drawText(text: PosterText) {
     if (!this._context) return;
-    const {
-      maxWidth,
-      width,
-      lineHeight,
-      left,
-      top,
-      fontFamily,
-      fontSize,
-      fontWeight,
-      color,
-    } = text.style;
+    const { maxWidth, width, lineHeight, left, top, fontFamily, fontSize, fontWeight, color } =
+      text.style;
     // 字体
     if (fontFamily) {
       const weight = fontWeight || 500;
@@ -74,8 +65,7 @@ export default class WebRenderer extends Renderer {
     // 基于文本对齐的绘制方法
     const fillText = (line: string, $x: number, $y: number) => {
       let lineX: number = $x;
-      const textLineWidth: number =
-        this._context?.measureText(line)?.width || 0;
+      const textLineWidth: number = this._context?.measureText(line)?.width || 0;
       if (text.style.textAlign === 'center') {
         lineX = $x + (textWidth - textLineWidth) * 0.5;
       }

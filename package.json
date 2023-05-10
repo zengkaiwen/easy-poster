@@ -1,20 +1,26 @@
 {
-  "name": "easy-poster",
+  "name": "easyposter",
   "version": "1.0.0",
-  "description": "",
+  "description": "一个使用简单的海报生成库",
   "main": "lib/easy-poster.cjs.js",
-  "module": "lib/easy-poster.esm.js",
+  "module": "index.js",
   "jsnext:main": "lib/easy-poster.esm.js",
   "browser": "lib/easy-poster.umd.js",
-  "types": "src/index.ts",
+  "types": "types/index.d.ts",
   "files": [
-    "lib"
+    "lib/",
+    "types/",
+    "README.md",
+    "index.js",
+    "LICENSE"
   ],
   "scripts": {
     "dev": "tsc-watch --onSuccess \"nr dev:example\"",
     "dev:example": "vite",
-    "build": "tsc && rollup -c rollup.config.js",
-    "build:watch": "rollup -c rollup.config.js --watch"
+    "build": "nr clean && nr build-core && nr build-dts",
+    "build-core": "cross-env NODE_ENV=production rollup -c rollup.config.js",
+    "build-dts": "dts-bundle-generator --no-banner true -o types/index.d.ts src/index.ts",
+    "clean": "rimraf lib"
   },
   "keywords": [
     "poster",
@@ -22,9 +28,6 @@
   ],
   "author": "kevin",
   "license": "MIT",
-  "dependencies": {
-    "yoga-layout-prebuilt": "^1.10.0"
-  },
   "devDependencies": {
     "@antfu/ni": "^0.21.3",
     "@babel/core": "^7.16.7",
@@ -35,6 +38,8 @@
     "@rollup/plugin-eslint": "^9.0.3",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^13.1.2",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@rollup/plugin-terser": "^0.4.1",
     "@rollup/plugin-typescript": "^11.1.0",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
@@ -42,6 +47,8 @@
     "@typescript-eslint/parser": "^5.0.0",
     "@vitejs/plugin-react": "^4.0.0",
     "babel-loader": "^8.2.3",
+    "cross-env": "^7.0.3",
+    "dts-bundle-generator": "^8.0.1",
     "eslint": "^8.0.1",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.8.0",
@@ -54,10 +61,17 @@
     "prettier": "^2.8.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "rimraf": "^5.0.0",
     "rollup": "^2.62.0",
+    "rollup-plugin-filesize": "^10.0.0",
+    "rollup-plugin-progress": "^1.1.2",
     "styled-components": "6.0.0-rc.1",
     "tsc-watch": "^6.0.4",
+    "tslib": "^2.5.0",
     "typescript": "^5.0.4",
     "vite": "^4.3.5"
+  },
+  "dependencies": {
+    "visual-yoga-layout-prebuilt": "^1.10.0"
   }
 }

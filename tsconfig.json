@@ -1,15 +1,19 @@
 {
   "compilerOptions": {
     "rootDir": "./src",
+    "outDir": "./src-js",
+    "removeComments": true,
     "module": "ESNext",
     "moduleResolution": "nodenext",
+    "newLine": "lf",
+    "downlevelIteration": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2015",
-    "lib": ["ES2018", "DOM"],
+    "esModuleInterop": true,
+    "target": "ES5",
+    "lib": ["ESNext", "DOM"],
     "allowJs": false,
-    "sourceMap": false,
-    "outDir": "./src-js"
+    "checkJs": false
   },
-  "include": ["src/index.ts"],
+  "include": ["src"],
   "exclude": ["node_modules", "lib", "example"]
 }

@@ -9,5 +9,10 @@ export default defineConfig({
       '@easy-poster': path.resolve(__dirname, 'src-js'),
     },
   },
+  build: {
+    commonjsOptions: {
+      include: 'node_modules',
+    },
+  },
   plugins: [react()],
 });

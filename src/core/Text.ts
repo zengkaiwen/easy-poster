@@ -1,10 +1,11 @@
-import { PosterStyle, PosterNodeType } from "../easy-poster";
-import renderer from "../renderer";
-import PosterNode from "./Node";
+import type { PosterStyle, PosterNodeType } from '../easyposter';
+import renderer from '../renderer';
+import PosterNode from './Node';
 
 export default class PosterText extends PosterNode {
   public type: PosterNodeType = 'text';
-  private _text: string = '';
+
+  private _text = '';
 
   constructor(style: PosterStyle, text: string) {
     super(style);

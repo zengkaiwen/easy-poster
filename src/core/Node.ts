@@ -1,10 +1,23 @@
-import yoga from 'yoga-layout-prebuilt';
-import type { PosterStyle, TStyleFlexDirection, TStyleWrap, PosterNodeType, TStylePosition, TStyleJustifyContent, TStyleAlignItems, TStyleAlignContent, TStyleAlignSelf, TStyleValue, PosterNodeBound } from '../easy-poster';
+import * as yoga from 'visual-yoga-layout-prebuilt';
+import type {
+  PosterStyle,
+  TStyleFlexDirection,
+  TStyleWrap,
+  PosterNodeType,
+  TStylePosition,
+  TStyleJustifyContent,
+  TStyleAlignItems,
+  TStyleAlignContent,
+  TStyleAlignSelf,
+  TStyleValue,
+  PosterNodeBound,
+} from '../easyposter';
 
 export default class PosterNode {
   public type: PosterNodeType = 'node';
 
   protected _layout: yoga.YogaNode;
+
   protected _style: PosterStyle;
 
   constructor(style: PosterStyle) {
@@ -16,6 +29,7 @@ export default class PosterNode {
   get style(): PosterStyle {
     return this._style;
   }
+
   set style(s: PosterStyle) {
     this._style = s;
     this._setStyle(s);
@@ -37,13 +51,13 @@ export default class PosterNode {
   }
 
   private _setStyle<K extends keyof PosterStyle>(style: PosterStyle) {
-    Object.keys(style).map((key) => this._setStyleItem(key as K))
+    Object.keys(style).map((key) => this._setStyleItem(key as K));
   }
 
-  private _setStyleItem<K extends keyof PosterStyle>(key:K) {
+  private _setStyleItem<K extends keyof PosterStyle>(key: K) {
     const value = this._style[key];
     if (value === undefined) return;
-    switch(key) {
+    switch (key) {
       case 'width':
         this._layout.setWidth(value as TStyleValue);
         break;
@@ -106,7 +120,7 @@ export default class PosterNode {
     }
   }
 
-  private _setMargin(val: string = '0 0 0 0') {
+  private _setMargin(val = '0 0 0 0') {
     const [top, right, bottom, left] = val.split(' ');
     this._layout.setMargin(yoga.EDGE_TOP, parseFloat(top));
     this._layout.setMargin(yoga.EDGE_RIGHT, parseFloat(right));
@@ -114,7 +128,7 @@ export default class PosterNode {
     this._layout.setMargin(yoga.EDGE_LEFT, parseFloat(left));
   }
 
-  private _setPadding(val: string = '0 0 0 0') {
+  private _setPadding(val = '0 0 0 0') {
     const [top, right, bottom, left] = val.split(' ');
     this._layout.setPadding(yoga.EDGE_TOP, parseFloat(top));
     this._layout.setPadding(yoga.EDGE_RIGHT, parseFloat(right));
@@ -129,56 +143,56 @@ export default class PosterNode {
       this._layout.setPositionType(yoga.POSITION_TYPE_RELATIVE);
     }
     const { top, right, bottom, left } = this._style;
-    top && (this._layout.setPosition(yoga.EDGE_TOP, top));
-    right && (this._layout.setPosition(yoga.EDGE_RIGHT, right));
-    bottom && (this._layout.setPosition(yoga.EDGE_BOTTOM, bottom));
-    left && (this._layout.setPosition(yoga.EDGE_LEFT, left));
+    if (top !== undefined) this._layout.setPosition(yoga.EDGE_TOP, top);
+    if (right !== undefined) this._layout.setPosition(yoga.EDGE_RIGHT, right);
+    if (bottom !== undefined) this._layout.setPosition(yoga.EDGE_BOTTOM, bottom);
+    if (left !== undefined) this._layout.setPosition(yoga.EDGE_LEFT, left);
   }
 
   private _setFlexDirection(val: TStyleFlexDirection) {
-    val === 'column' && this._layout.setFlexDirection(yoga.FLEX_DIRECTION_COLUMN);
-    val === 'column-reverse' && this._layout.setFlexDirection(yoga.FLEX_DIRECTION_COLUMN_REVERSE);
-    val === 'row' && this._layout.setFlexDirection(yoga.FLEX_DIRECTION_ROW);
-    val === 'row-reverse' && this._layout.setFlexDirection(yoga.FLEX_DIRECTION_ROW_REVERSE);
+    if (val === 'column') this._layout.setFlexDirection(yoga.FLEX_DIRECTION_COLUMN);
+    if (val === 'column-reverse') this._layout.setFlexDirection(yoga.FLEX_DIRECTION_COLUMN_REVERSE);
+    if (val === 'row') this._layout.setFlexDirection(yoga.FLEX_DIRECTION_ROW);
+    if (val === 'row-reverse') this._layout.setFlexDirection(yoga.FLEX_DIRECTION_ROW_REVERSE);
   }
 
   private _setFlexWrap(val: TStyleWrap) {
-    val === 'nowrap' && this._layout.setFlexWrap(yoga.WRAP_NO_WRAP);
-    val === 'wrap' && this._layout.setFlexWrap(yoga.WRAP_WRAP);
-    val === 'wrap-reverse' && this._layout.setFlexWrap(yoga.WRAP_WRAP_REVERSE);
+    if (val === 'nowrap') this._layout.setFlexWrap(yoga.WRAP_NO_WRAP);
+    if (val === 'wrap') this._layout.setFlexWrap(yoga.WRAP_WRAP);
+    if (val === 'wrap-reverse') this._layout.setFlexWrap(yoga.WRAP_WRAP_REVERSE);
   }
 
   private _setJustifyContent(val: TStyleJustifyContent) {
-    val === 'flex-start' && this._layout.setJustifyContent(yoga.JUSTIFY_FLEX_START);
-    val === 'flex-end' && this._layout.setJustifyContent(yoga.JUSTIFY_FLEX_END);
-    val === 'center' && this._layout.setJustifyContent(yoga.JUSTIFY_CENTER);
-    val === 'space-around' && this._layout.setJustifyContent(yoga.JUSTIFY_SPACE_AROUND);
-    val === 'space-between' && this._layout.setJustifyContent(yoga.JUSTIFY_SPACE_BETWEEN);
+    if (val === 'flex-start') this._layout.setJustifyContent(yoga.JUSTIFY_FLEX_START);
+    if (val === 'flex-end') this._layout.setJustifyContent(yoga.JUSTIFY_FLEX_END);
+    if (val === 'center') this._layout.setJustifyContent(yoga.JUSTIFY_CENTER);
+    if (val === 'space-around') this._layout.setJustifyContent(yoga.JUSTIFY_SPACE_AROUND);
+    if (val === 'space-between') this._layout.setJustifyContent(yoga.JUSTIFY_SPACE_BETWEEN);
   }
 
   private _setAlignItems(val: TStyleAlignItems) {
-    val === 'baseline' && this._layout.setAlignItems(yoga.ALIGN_BASELINE)
-    val === 'center' && this._layout.setAlignItems(yoga.ALIGN_CENTER)
-    val === 'flex-end' && this._layout.setAlignItems(yoga.ALIGN_FLEX_END)
-    val === 'flex-start' && this._layout.setAlignItems(yoga.ALIGN_FLEX_START)
-    val === 'stretch' && this._layout.setAlignItems(yoga.ALIGN_STRETCH)
+    if (val === 'baseline') this._layout.setAlignItems(yoga.ALIGN_BASELINE);
+    if (val === 'center') this._layout.setAlignItems(yoga.ALIGN_CENTER);
+    if (val === 'flex-end') this._layout.setAlignItems(yoga.ALIGN_FLEX_END);
+    if (val === 'flex-start') this._layout.setAlignItems(yoga.ALIGN_FLEX_START);
+    if (val === 'stretch') this._layout.setAlignItems(yoga.ALIGN_STRETCH);
   }
 
   private _setAlignContent(val: TStyleAlignContent) {
-    val === 'baseline' && this._layout.setAlignContent(yoga.ALIGN_BASELINE)
-    val === 'center' && this._layout.setAlignContent(yoga.ALIGN_CENTER)
-    val === 'flex-end' && this._layout.setAlignContent(yoga.ALIGN_FLEX_END)
-    val === 'flex-start' && this._layout.setAlignContent(yoga.ALIGN_FLEX_START)
-    val === 'stretch' && this._layout.setAlignContent(yoga.ALIGN_STRETCH)
-    val === 'space-around' && this._layout.setAlignContent(yoga.ALIGN_SPACE_AROUND)
-    val === 'space-between' && this._layout.setAlignContent(yoga.ALIGN_SPACE_BETWEEN)
+    if (val === 'baseline') this._layout.setAlignContent(yoga.ALIGN_BASELINE);
+    if (val === 'center') this._layout.setAlignContent(yoga.ALIGN_CENTER);
+    if (val === 'flex-end') this._layout.setAlignContent(yoga.ALIGN_FLEX_END);
+    if (val === 'flex-start') this._layout.setAlignContent(yoga.ALIGN_FLEX_START);
+    if (val === 'stretch') this._layout.setAlignContent(yoga.ALIGN_STRETCH);
+    if (val === 'space-around') this._layout.setAlignContent(yoga.ALIGN_SPACE_AROUND);
+    if (val === 'space-between') this._layout.setAlignContent(yoga.ALIGN_SPACE_BETWEEN);
   }
 
   private _setAlignSelf(val: TStyleAlignSelf) {
-    val === 'baseline' && this._layout.setAlignSelf(yoga.ALIGN_BASELINE)
-    val === 'center' && this._layout.setAlignSelf(yoga.ALIGN_CENTER)
-    val === 'flex-end' && this._layout.setAlignSelf(yoga.ALIGN_FLEX_END)
-    val === 'flex-start' && this._layout.setAlignSelf(yoga.ALIGN_FLEX_START)
-    val === 'stretch' && this._layout.setAlignSelf(yoga.ALIGN_STRETCH)
+    if (val === 'baseline') this._layout.setAlignSelf(yoga.ALIGN_BASELINE);
+    if (val === 'center') this._layout.setAlignSelf(yoga.ALIGN_CENTER);
+    if (val === 'flex-end') this._layout.setAlignSelf(yoga.ALIGN_FLEX_END);
+    if (val === 'flex-start') this._layout.setAlignSelf(yoga.ALIGN_FLEX_START);
+    if (val === 'stretch') this._layout.setAlignSelf(yoga.ALIGN_STRETCH);
   }
 }
