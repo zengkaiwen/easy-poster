@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "./src-js",
     "removeComments": true,
     "module": "ESNext",
     "moduleResolution": "nodenext",

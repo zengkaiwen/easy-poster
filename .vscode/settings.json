@@ -16,7 +16,7 @@
     "**/.DS_Store": true
   },
   "path-intellisense.mappings": {
-    "@easy-poster": "${workspaceFolder}/src-js"
+    "@easyposter": "${workspaceFolder}/src"
   },
   "typescript.suggest.paths": false,
   "javascript.suggest.paths": false,

@@ -1,6 +1,6 @@
 import PosterImage from '../core/Image';
 import PosterText from '../core/Text';
-import type { PosterType } from '../easyposter';
+import { PosterType } from '../types';
 import Renderer from './Renderer';
 
 const mimeType: Record<PosterType, string> = {
@@ -21,6 +21,13 @@ export default class WebRenderer extends Renderer {
     this._context = canvas.getContext('2d');
     canvas.style.display = 'none';
     document.body.appendChild(canvas);
+  }
+
+  setWidthHeight(width: number, height: number) {
+    this.width = width;
+    this.height = height;
+    this._canvas.width = width;
+    this._canvas.height = height;
   }
 
   drawImage(image: PosterImage) {

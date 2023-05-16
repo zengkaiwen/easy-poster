@@ -1,11 +1,13 @@
 import PosterImage from '../core/Image';
 import PosterText from '../core/Text';
-import type { PosterType } from '../easyposter';
+import { PosterType } from '../types';
 
 export default abstract class Renderer {
   width: number;
 
   height: number;
+
+  abstract setWidthHeight(width: number, height: number);
 
   abstract drawImage(image: PosterImage);
 

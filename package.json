@@ -15,10 +15,11 @@
     "LICENSE"
   ],
   "scripts": {
-    "dev": "tsc-watch --onSuccess \"nr dev:example\"",
-    "dev:example": "vite",
+    "dev": "vite",
     "build": "nr clean && nr build-core && nr build-dts",
-    "build-core": "cross-env NODE_ENV=production rollup -c rollup.config.js",
+    "build-core": "nr build-core:dev && nr build-core:prod",
+    "build-core:prod": "cross-env NODE_ENV=production rollup -c rollup.config.js",
+    "build-core:dev": "cross-env NODE_ENV=development rollup -c rollup.config.js",
     "build-dts": "dts-bundle-generator --no-banner true -o types/index.d.ts src/index.ts",
     "clean": "rimraf lib"
   },
@@ -27,7 +28,7 @@
     "canvas"
   ],
   "author": "kevin",
-  "license": "MIT",
+  "license": "Apache 2.0",
   "devDependencies": {
     "@antfu/ni": "^0.21.3",
     "@babel/core": "^7.16.7",

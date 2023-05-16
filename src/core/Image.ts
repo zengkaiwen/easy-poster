@@ -1,4 +1,4 @@
-import type { PosterStyle, PosterNodeType } from '../easyposter';
+import { PosterStyle, PosterNodeType } from '../types';
 import renderer from '../renderer';
 import PosterNode from './Node';
 

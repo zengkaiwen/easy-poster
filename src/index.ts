@@ -3,12 +3,7 @@ import PosterImage from './core/Image';
 import PosterNode from './core/Node';
 import PosterStage from './core/Stage';
 import PosterText from './core/Text';
-import type {
-  PosterGroupSchema,
-  PosterImageSchema,
-  PosterStageSchema,
-  PosterTextSchema,
-} from './easyposter';
+import { PosterGroupSchema, PosterImageSchema, PosterStageSchema, PosterTextSchema } from './types';
 
 function loadSchemaImages(
   schema: PosterStageSchema,
@@ -87,15 +82,16 @@ function loadParser(
   return stage as PosterStage;
 }
 
-export default function (
+export function createPoster(
   schema: PosterStageSchema,
-  progress: (v: number) => void,
-  success: () => void
-) {
-  loadSchemaImages(schema, progress, (imgList: HTMLImageElement[]) => {
-    const stage = loadParser(imgList, schema);
-    stage.calculateLayout();
-    stage.render();
-    success?.();
+  progress: (v: number) => void
+): Promise<PosterStage> {
+  return new Promise((resolve) => {
+    loadSchemaImages(schema, progress, (imgList: HTMLImageElement[]) => {
+      const stage = loadParser(imgList, schema);
+      stage.calculateLayout();
+      stage.render();
+      resolve(stage);
+    });
   });
 }

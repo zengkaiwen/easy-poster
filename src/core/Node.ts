@@ -1,5 +1,5 @@
 import * as yoga from 'visual-yoga-layout-prebuilt';
-import type {
+import {
   PosterStyle,
   TStyleFlexDirection,
   TStyleWrap,
@@ -11,7 +11,7 @@ import type {
   TStyleAlignSelf,
   TStyleValue,
   PosterNodeBound,
-} from '../easyposter';
+} from '../types';
 
 export default class PosterNode {
   public type: PosterNodeType = 'node';

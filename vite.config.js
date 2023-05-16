@@ -6,7 +6,7 @@ export default defineConfig({
   root: path.join(__dirname, './example'),
   resolve: {
     alias: {
-      '@easy-poster': path.resolve(__dirname, 'src-js'),
+      '@easyposter': path.resolve(__dirname, './src'),
     },
   },
   build: {

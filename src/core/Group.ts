@@ -1,4 +1,4 @@
-import type { PosterStyle, PosterNodeType } from '../easyposter';
+import { PosterStyle, PosterNodeType } from '../types';
 import PosterNode from './Node';
 
 export default class PosterGroup extends PosterNode {

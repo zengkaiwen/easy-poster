@@ -1,5 +1,5 @@
 import * as yoga from 'visual-yoga-layout-prebuilt';
-import type { PosterStyle, PosterNodeType, PosterType } from '../easyposter';
+import { PosterStyle, PosterNodeType, PosterType } from '../types';
 import PosterGroup from './Group';
 import PosterNode from './Node';
 import renderer from '../renderer';
@@ -29,8 +29,7 @@ export default class PosterStage extends PosterGroup {
   }
 
   private _setRenderWH() {
-    renderer.width = Number(this.width);
-    renderer.height = Number(this.height);
+    renderer.setWidthHeight(Number(this.width), Number(this.height));
   }
 
   private _setStageStyle() {
