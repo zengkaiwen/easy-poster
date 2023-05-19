@@ -15,7 +15,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "cross-env NODE_ENV=development && vite",
     "build": "nr clean && nr build-core && nr build-dts",
     "build-core": "nr build-core:dev && nr build-core:prod",
     "build-core:prod": "cross-env NODE_ENV=production rollup -c rollup.config.js",

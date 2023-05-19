@@ -33,6 +33,7 @@ export default class WebRenderer extends Renderer {
   drawImage(image: PosterImage) {
     const { left, top, width, height } = image.bound;
     this._context?.drawImage(image.image, left, top, width, height);
+    console.log('绘制图片', image);
   }
 
   exportPoster(type: PosterType, quality: number): string {
@@ -99,6 +100,8 @@ export default class WebRenderer extends Renderer {
     }
     fillText(line, x, y);
     // TODO: 绘制完成后，修改文本的高度
+
+    console.log('绘制文本', text);
   }
 
   toString() {

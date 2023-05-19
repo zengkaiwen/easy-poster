@@ -21,6 +21,9 @@ export default class PosterGroup extends PosterNode {
   }
 
   render(): boolean {
+    this.children.forEach((child) => {
+      child.render();
+    });
     return true;
   }
 
