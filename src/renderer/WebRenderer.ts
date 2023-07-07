@@ -44,8 +44,7 @@ export default class WebRenderer extends Renderer {
 
   drawText(text: PosterText) {
     if (!this._context) return;
-    const { maxWidth, width, lineHeight, left, top, fontFamily, fontSize, fontWeight, color } =
-      text.style;
+    const { maxWidth, width, lineHeight, left, top, fontFamily, fontSize, fontWeight, color } = text.style;
     // 字体
     if (fontFamily) {
       const weight = fontWeight || 500;
@@ -104,7 +103,7 @@ export default class WebRenderer extends Renderer {
     console.log('绘制文本', text);
   }
 
-  toString() {
-    return `WebRenderer with Canvas2D`;
+  toString(): string {
+    return 'WebRenderer with Canvas2D';
   }
 }

@@ -15,8 +15,8 @@ export default class PosterGroup extends PosterNode {
   }
 
   addChildren(children: PosterNode[] = []) {
-    for (let i = 0; i < children.length; i++) {
-      this.addChild(children[i]);
+    for (const child of children) {
+      this.addChild(child);
     }
   }
 
@@ -35,7 +35,7 @@ export default class PosterGroup extends PosterNode {
 
     if (!this._availableNodeType.includes(child.type)) {
       console.error(
-        "The 'type' property of the child node is incorrect. It must be one of 'image', 'group', or 'text'."
+        "The 'type' property of the child node is incorrect. It must be one of 'image', 'group', or 'text'.",
       );
       console.error(child);
       return;

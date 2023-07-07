@@ -1,18 +1,22 @@
+// vite.config.js
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
+import dts from 'vite-plugin-dts';
 
 export default defineConfig({
-  root: path.join(__dirname, './example'),
-  resolve: {
-    alias: {
-      '@easyposter': path.resolve(__dirname, './src'),
-    },
-  },
   build: {
-    commonjsOptions: {
-      include: 'node_modules',
+    lib: {
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'easyposter',
+      fileName: 'easyposter',
     },
   },
-  plugins: [react()],
+  plugins: [
+    dts({
+      beforeWriteFile: (filePath, content) => ({
+        filePath: filePath.replace(/src/, ''),
+        content,
+      }),
+    }),
+  ],
 });

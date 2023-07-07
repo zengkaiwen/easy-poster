@@ -4,7 +4,7 @@ export interface PosterNodeBound {
   left: number;
   top: number;
   width: number;
-  height: number
+  height: number;
 }
 
 export type TStyleValue = string | number;
@@ -19,7 +19,14 @@ export type TStyleJustifyContent = 'flex-start' | 'center' | 'flex-end' | 'space
 
 export type TStyleAlignItems = 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch';
 
-export type TStyleAlignContent = 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'space-around' | 'space-between';
+export type TStyleAlignContent =
+  | 'baseline'
+  | 'center'
+  | 'flex-start'
+  | 'flex-end'
+  | 'stretch'
+  | 'space-around'
+  | 'space-between';
 
 export type TStyleAlignSelf = 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch';
 
